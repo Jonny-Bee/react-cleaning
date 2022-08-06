@@ -1,0 +1,35 @@
+.fullweek{
+    background-color: rgb(255, 213, 213) !important;
+}
+.normalweek{
+    background-color: white !important;
+}
+.noMargin{
+    margin:0 !important;
+    padding:0 !important;
+}
+.rightAlign{
+    text-align: right !important;
+    
+}
+.grey{
+    background-color: rgb(244, 244, 244);
+}
+.highlight :hover{
+    background-color: rgb(213, 243, 255);
+    cursor:pointer;
+}
+.slim_card{
+    padding : 0px 15px !important;
+    border-radius: 0 !important;
+}
+.no_corner{
+    border-radius: 0 !important;
+}
+.right-border{
+    border-right: 1px solid rgb(182, 182, 182);
+}
+
+
+
+

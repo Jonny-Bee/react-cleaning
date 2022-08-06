@@ -1,24 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import CalenderView from './components/calender-view/calender-view';
+import LayoutView from './components/layout-view/layout-view';
+import LocationView from './components/location-view/location-view';
+import SheduleView from './components/schedule-view/schedule-view';
+import { Routes, Route } from 'react-router';
 
-function App() {
+import Home from './components/home/home';
+import NavigationBar from './components/routes/navigation/navigation.route';
+
+const App = ()=> {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element = {<NavigationBar />}>
+          <Route index element={<Home/>}/>
+          <Route path='schedule/*' element={<SheduleView/>}/>
+          <Route path='calender/*' element={<CalenderView/>}/>
+          <Route path='layouts/*' element={<LayoutView/>}/>
+          <Route path='locations/*' element={<LocationView/>}/> 
+          
+      </Route>
+    </Routes>
+   
   );
 }
 

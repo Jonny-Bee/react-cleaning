@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { CalenderProvider } from './contexts/calender-context/calender-context';
+import { LayoutContextProvider } from './contexts/layout-context/layout-context';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { LocationContextProvider } from './contexts/location-context/location-context';
+import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <CalenderProvider>
+      <LayoutContextProvider>
+        <LocationContextProvider>
+        <App />
+        </LocationContextProvider>
+      </LayoutContextProvider>
+    </CalenderProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

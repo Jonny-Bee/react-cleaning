@@ -1,0 +1,64 @@
+
+ .p_cell{
+    border:.01em solid #c2c2c2;
+    border-collapse: collapse;
+    padding:.2em;
+    
+    border-spacing: 0px;
+    
+    
+    
+}
+.p_row_interactive tr{
+    cursor: pointer !important;
+}
+.p_row_interactive tbody :hover{
+    background-color: rgb(209, 229, 255) !important;
+    
+}
+@page {
+    size: A4 landscape;
+    margin: 2%;
+    scale: 25%;
+}
+
+.p_bold{
+    font-weight: 700;
+}
+table{
+    margin-top: 1em;
+    
+    width:100%;
+    border:.01em solid #c2c2c2;
+    font-size:9pt;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-collapse:collapse;
+    border-spacing: 0px;
+    padding:3px;
+    
+}
+.page_break{
+    margin-top: 12pt;
+    page-break-before: always;
+}
+.p_heading{
+    background-color: rgb(255, 219, 177);
+}
+.p_odd_row{
+
+    background-color: rgb(240, 240, 240);
+}
+.p_highlight{
+    background-color: yellow;
+}
+.p_warn{
+    background-color: rgb(255, 206, 206);
+}
+.p_promo{
+    background-color: rgb(206, 206, 206);
+}
+.foot{
+    text-align: right;
+    font-weight: 400;
+    font-size: smaller;
+}

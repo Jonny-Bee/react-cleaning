@@ -1,0 +1,67 @@
+import { createContext,useEffect, useState } from "react";
+import { getLocations, insertLocation } from "../../IO/DataIO";
+
+export const LocationContext = createContext(
+    {
+        locations:[],
+        setLocations:()=>{},
+        section:null,
+        setSection:()=>{}
+
+    }
+)
+
+export const LocationContextProvider = ({children}) =>{
+
+    const [locations, setLocations] = useState([]);
+    const [section, setSection] = useState('Ambient');
+
+    useEffect(() => {
+        console.log('loading Locations')
+        const f = (data) =>{
+            console.log(data);
+            
+            setLocations(data);
+        }
+        getLocations({section:section},f);
+    },[section]);
+
+    const cUpdateLocation = (data) =>{
+        let tLocations = [...locations];
+        console.log(data);
+        for(var i = 0; i < tLocations.length; i++)
+        {
+            
+            if(tLocations[i].bay_id === data.bay_id)
+            {
+                tLocations[i] = data;
+                console.log('found match');
+            }
+        }
+        setLocations(tLocations);
+    }
+    const reloadLocations = (e) =>{
+        const f = (data) =>{
+            console.log(data);
+            if(data.length > 0)
+                setLocations(data);
+        }
+        getLocations({section:section},f);
+    }
+
+    const addLocation = (data) =>{
+        let req = {layout:data.layout_id};
+        let c = 1;
+        for(let i = 0;i<locations.length;i++)
+        {
+            c += locations[i].layout_id === parseInt(data.layout_id) ? 1 : 0;
+        }
+        req.bay = c;
+        req.date = data.date;
+        insertLocation(req,reloadLocations);
+    }
+
+    const value = {locations, setLocations, cUpdateLocation, section, setSection, addLocation};
+
+    return <LocationContext.Provider value={value}>{children}</LocationContext.Provider>
+}

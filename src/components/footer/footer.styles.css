@@ -1,0 +1,24 @@
+
+:root {
+    --main:#000000;
+    --bgcolor:#ffffff;
+    
+}
+.bottom-container{
+    text-align: center;
+    padding: 30px;
+    background-color:var(--main);
+    color:var(--bgcolor);
+    margin-top:auto;
+
+    
+}
+.bottom-container a{
+    color:var(--bgcolor);
+    text-decoration: none;
+    padding:10px;
+}
+.bottom-container a:hover{
+    
+    color:coral;
+}
