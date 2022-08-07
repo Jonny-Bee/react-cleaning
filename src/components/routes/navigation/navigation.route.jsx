@@ -6,9 +6,12 @@ import TopNav from '../../navigation/navigation-bar';
 const NavigationBar = () =>{
     return(
         <Fragment>
+            <div className='fullHeight'>
             <TopNav />
             <Outlet/>
+            </div>
             <MainFooter />
+            
         </Fragment>
     )
 }

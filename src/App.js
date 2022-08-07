@@ -8,6 +8,7 @@ import { Routes, Route } from 'react-router';
 
 import Home from './components/home/home';
 import NavigationBar from './components/routes/navigation/navigation.route';
+import WeeklyView from './components/weekly/weekly-view';
 
 const App = ()=> {
   return (
@@ -18,6 +19,7 @@ const App = ()=> {
           <Route path='calender/*' element={<CalenderView/>}/>
           <Route path='layouts/*' element={<LayoutView/>}/>
           <Route path='locations/*' element={<LocationView/>}/> 
+          <Route path='weekly/*' element={<WeeklyView/>}/> 
           
       </Route>
     </Routes>

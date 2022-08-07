@@ -103,18 +103,18 @@ const ScheduleRow = (props) => {
 
         <tr className={bgClass}>
             <td className='p_cell p_heading p_bold'>{props.location.group_name}</td>
-            <td className='p_cell text-center' width='3%'>{props.location.bay}</td>
+            <td className='p_cell p_center' width='3%'>{props.location.bay}</td>
             {
-                highlightWeeks.map((n)=>( <td key={props.location.bay_id + 'hl'+ n  + Math.random()}className={'p_cell text-center'+ getHighlight(n)} width='6%'>&ensp;&ensp;/&ensp;&ensp;/&ensp;&ensp;</td>))
+                highlightWeeks.map((n)=>( <td key={props.location.bay_id + 'hl'+ n  + Math.random()}className={'p_cell p_center'+ getHighlight(n)} width='6%'>&ensp;&ensp;/&ensp;&ensp;/&ensp;&ensp;</td>))
             }
         </tr>
 
 
         <tr className={bgClass}>
             <td className='p_cell'>Signed</td>
-            <td className='p_cell text-center' width='3%'></td>
+            <td className='p_cell p_center' width='3%'></td>
             {
-                highlightWeeks.map((n)=>( <td key={props.location.bay_id + 'hd'+ n + Math.random()}className={'p_cell text-center'+ getHighlight(n)} width='6%'></td>))
+                highlightWeeks.map((n)=>( <td key={props.location.bay_id + 'hd'+ n + Math.random()}className={'p_cell p_center'+ getHighlight(n)} width='6%'></td>))
             }
 
         </tr>

@@ -20,18 +20,22 @@ const SheduleView = (props) =>{
     const splitLocations = [];
     let tLoc = [];
     let c = 0;
+    
     for(var i = 0 ; i < locations.length;i++)
     {
         tLoc.push(locations[i]);
-        if(c === 9 || i === locations.length -1)
+        c++;
+        if(c === 10 || i === locations.length -1)
         {
             c = 0;
             splitLocations.push([...tLoc]);
             tLoc = [];
         }
-        c++;
+        
     }
-
+    const handlePrint = (e)=>{
+        iFramePrinter('printable');
+    }
     const setWeeks = (date) => {
          let startDate;
          if(date)
@@ -50,11 +54,12 @@ const SheduleView = (props) =>{
     }
 
     const handleSectionChange = (event) => {
-        
+        if(event.target.value === '') return;
         setSection(event.target.value);
         setGroup(event.target.value);
     }
     const handleDateChange = (event) => {
+        if(event.target.value === '') return;
         let sDate = '';
         
         for(var i =0;i<weeks.length;i++)
@@ -64,7 +69,9 @@ const SheduleView = (props) =>{
         }
         setWeeks(sDate);
     }
-   
+   const getDisabled = () =>{
+        return tableWeeks.length > 0 ? false : true;
+   }
     return(
         <>
             <Container fluid className='mb-5 mt-3'>
@@ -72,9 +79,8 @@ const SheduleView = (props) =>{
                 <Row>
                 <Col>
                  <Form.Group className="mb-3">
-                    <Form.Label>Select Section</Form.Label>
+                   
                     <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange}>
-
                         <option value='Ambient'>Ambient</option>
                         <option value='Chilled'>Chilled</option>
                         <option value='Frozen'>Frozen</option>
@@ -86,8 +92,9 @@ const SheduleView = (props) =>{
                 </Col>
                 <Col>
                  <Form.Group className="mb-3">
-                 <Form.Label>Select Start Date</Form.Label>
+                 
                     <Form.Select size='sm' aria-label="Section" onChange={handleDateChange}>
+                        <option  value=''>Select Start Date...</option>
                         {
                             weeks.map((week,count) => {
                             let myDate = new Date(week.start_date);
@@ -97,18 +104,21 @@ const SheduleView = (props) =>{
                     </Form.Select>
                 </Form.Group>
                 </Col>
+                <Col sm={2} >
+                <Button size='sm' className=''variant="danger" disabled={getDisabled()} onClick={handlePrint}> Print Sheets </Button>
+                </Col>
                 </Row>
             </Container>
             
             <Container fluid className='mb-5 ' id='printable'>
                 {splitLocations.map((_locations,count) =>(
                     <>
-                    <h6 className='page_break'>{section} cleaning Page {count+1} of {splitLocations.length}</h6>
+                    <h6 className='page_break p_title'>{section} cleaning Page {count+1} of {splitLocations.length}</h6>
             <table cellPadding="0" cellSpacing="0" >
                 <thead><tr className='p_heading' height='30px'>
                     <th>Layout</th>
                     <th>Bay</th>
-                    {tableWeeks.map((week,count) =>( <td key={count}className='text-center'>{week.toLocaleDateString()}</td>))}
+                    {tableWeeks.map((week,count) =>( <td key={count}className='p_center'>{week.toLocaleDateString()}</td>))}
                 </tr></thead><tbody>
             
             {_locations.map((location,count) =>(

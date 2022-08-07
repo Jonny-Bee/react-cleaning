@@ -1,5 +1,5 @@
 
-export const iFramePrinter = (elementToPrint) => {
+export const iFramePrinter = (elementToPrint,portrait = false) => {
 
     var content = document.getElementById(elementToPrint);
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;
@@ -9,7 +9,10 @@ export const iFramePrinter = (elementToPrint) => {
     pri.document.write(content.innerHTML);
     
     var cssLink = document.createElement("link");
-    cssLink.href = "/printStyles.css"; 
+    if(portrait)
+        cssLink.href = "/printStyles_portrait.css";
+    else
+        cssLink.href = "/printStyles.css";
     cssLink.rel = "stylesheet"; 
     cssLink.type = "text/css"; 
     

@@ -11,10 +11,6 @@
     
     
 }
-.align-middle{
-    margin-top: auto;
-    margin-bottom: auto;
-}
 .p_row_interactive tr{
     cursor: pointer !important;
 }
@@ -23,7 +19,7 @@
     
 }
 @page {
-    size: A4 landscape;
+    size: A4 portrait;
     margin: 2%;
     scale: 25%;
 }

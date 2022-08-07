@@ -1,12 +1,14 @@
 import { createContext,useEffect, useState } from "react";
-import { getLocations, insertLocation } from "../../IO/DataIO";
+import { getLocations, insertLocation, getStore } from "../../IO/DataIO";
 
 export const LocationContext = createContext(
     {
         locations:[],
         setLocations:()=>{},
         section:null,
-        setSection:()=>{}
+        setSection:()=>{},
+        store:[],
+        setStore:()=>{}
 
     }
 )
@@ -15,6 +17,7 @@ export const LocationContextProvider = ({children}) =>{
 
     const [locations, setLocations] = useState([]);
     const [section, setSection] = useState('Ambient');
+    const [store, setStore] = useState([]);
 
     useEffect(() => {
         console.log('loading Locations')
@@ -25,6 +28,16 @@ export const LocationContextProvider = ({children}) =>{
         }
         getLocations({section:section},f);
     },[section]);
+
+    useEffect(() => {
+        console.log('loading store')
+        const f = (data) =>{
+            console.log(data);
+            
+            setStore(data);
+        }
+        getStore({section:section},f);
+    },[]);
 
     const cUpdateLocation = (data) =>{
         let tLocations = [...locations];
@@ -61,7 +74,7 @@ export const LocationContextProvider = ({children}) =>{
         insertLocation(req,reloadLocations);
     }
 
-    const value = {locations, setLocations, cUpdateLocation, section, setSection, addLocation};
+    const value = {store,locations, setLocations, cUpdateLocation, section, setSection, addLocation};
 
     return <LocationContext.Provider value={value}>{children}</LocationContext.Provider>
 }

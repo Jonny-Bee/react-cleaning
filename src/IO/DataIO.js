@@ -69,7 +69,19 @@ export const getLocations = (req,onLoaded) => {
         console.log(error);
     }
 }
-
+export const getStore = (req,onLoaded) => {
+    try{
+        
+        console.log('loading...')
+        fetch(api_url + 'store/')
+        .then(res => res.json())
+        .then(data => {onLoaded(data)});
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
 export const insertLocation = (req,onLoaded) => {
     try{
         let params = new URLSearchParams(req).toString();
