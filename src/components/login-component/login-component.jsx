@@ -1,18 +1,22 @@
 import Container from 'react-bootstrap/Container';
 
 import { Card } from "react-bootstrap";
-
+import { UserContext } from '../../contexts/user-context/user-context';
 import { useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Login } from '../../IO/DataIO';
+import { useContext } from 'react';
 const LoginScreen= () =>{
     const [userName, setName] = useState('');
     const [pass, setPass] = useState('');
-
+    const {user,setUser} = useContext(UserContext);
     const handleSubmit = (event) => {
         event.preventDefault();
-        Login({user_name:userName,pass_word:pass})
+        let f = (ev) => {
+            setUser(ev);
+        }
+        Login({user_name:userName,pass_word:pass},f)
       };
 
     return (
