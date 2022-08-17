@@ -9,17 +9,19 @@ import { Routes, Route } from 'react-router';
 import Home from './components/home/home';
 import NavigationBar from './components/routes/navigation/navigation.route';
 import WeeklyView from './components/weekly/weekly-view';
-
+import { Navigate } from 'react-router-dom';
+import { UserContext } from './contexts/user-context/user-context';
+import { useContext } from 'react';
 const App = ()=> {
-  return (
+  const {user} = useContext(UserContext);
     <Routes>
       <Route path='/' element = {<NavigationBar />}>
           <Route index element={<Home/>}/>
-          <Route path='schedule/*' element={<SheduleView/>}/>
-          <Route path='calender/*' element={<CalenderView/>}/>
-          <Route path='layouts/*' element={<LayoutView/>}/>
-          <Route path='locations/*' element={<LocationView/>}/> 
-          <Route path='weekly/*' element={<WeeklyView/>}/> 
+          <Route path='schedule/*' element={user.hash === undefined ?<Navigate to="/" /> :<SheduleView/>}/>
+          <Route path='calender/*' element={user.hash === undefined ?<Navigate to="/" /> : <CalenderView/>}/>
+          <Route path='layouts/*' element={user.hash === undefined ?<Navigate to="/" /> :<LayoutView/>}/>
+          <Route path='locations/*' element={user.hash === undefined ?<Navigate to="/" /> :<LocationView/>}/> 
+          <Route path='weekly/*' element={user.hash === undefined ?<Navigate to="/" /> :<WeeklyView/>}/> 
           
       </Route>
     </Routes>

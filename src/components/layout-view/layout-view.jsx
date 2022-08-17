@@ -5,14 +5,8 @@ import { LayoutContext } from '../../contexts/layout-context/layout-context';
 import { useContext, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import LayoutCard from '../layout-card/layout-card';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect
-  } from "react-router-dom";
-  import { UserContext } from '../../contexts/user-context/user-context';
+
+
 const LayoutView = (props) => {
     const {layouts,setGroup} = useContext(LayoutContext);
 
@@ -20,9 +14,8 @@ const LayoutView = (props) => {
         
         setGroup(event.target.value);
       }
-      const {user} = useContext(UserContext);
-    if(user.hash === undefined)
-        return(<Redirect to='/'/>)
+      
+    
       
     return (
         <Container fluid className='mb-5'>

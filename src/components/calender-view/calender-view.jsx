@@ -6,20 +6,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { CalenderContext } from "../../contexts/calender-context/calender-context";
 import { useContext } from "react";
-import { UserContext } from "../../contexts/user-context/user-context";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect
-  } from "react-router-dom";
+
+
 const CalenderView = (props) => {
 
     const {weeks} = useContext(CalenderContext);
-    const {user} = useContext(UserContext);
-    if(user.hash === undefined)
-        return(<Redirect to='/'/>)
+   
+    
     const months = [];
     let cm = [];
     let oldMonth = 0;

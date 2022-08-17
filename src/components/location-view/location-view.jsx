@@ -7,14 +7,7 @@ import Button from 'react-bootstrap/esm/Button';
 import { iFramePrinter } from '../../utils/print-helper';
 import Modal from 'react-bootstrap/Modal';
 import { LayoutContext } from '../../contexts/layout-context/layout-context';
-import { UserContext } from '../../contexts/user-context/user-context';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect
-  } from "react-router-dom";
+
 const LocationView= (props) => {
     const {locations,setSection, addLocation} = useContext(LocationContext);
     const {layouts,setGroup} = useContext(LayoutContext);
@@ -39,9 +32,8 @@ const LocationView= (props) => {
         console.log({layout_id:selectedLayout,date:formattedDate});
         addLocation({layout_id:selectedLayout,date:formattedDate});
     }
-    const {user} = useContext(UserContext);
-    if(user.hash === undefined)
-        return(<Redirect to='/'/>)
+    
+    
     return (
         <>
         <Container fluid className='mb-5'>
