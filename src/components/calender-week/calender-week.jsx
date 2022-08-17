@@ -5,11 +5,13 @@ import { updateWeek } from "../../IO/DataIO";
 import { Card } from "react-bootstrap";
 import './calender-week.css';
 import Form from 'react-bootstrap/Form';
+import { UserContext } from "../../contexts/user-context/user-context";
 
 const CalenderWeek = (props) =>{
 
     const dataCopy = {...props.data};
     const {cUpdateWeek} = useContext(CalenderContext);
+    const {user} = useContext(UserContext);
     const bgclass = props.data.is_promo || props.data.is_seasonal ? ' fullweek' : ' normalweek';
     let myDate = new Date(props.data.start_date);
     let promoCheck = dataCopy.is_promo === 1 ? true : false;
@@ -17,12 +19,12 @@ const CalenderWeek = (props) =>{
     const handlePromoChange = (event) => {
         dataCopy.is_promo = event.target.checked ? 1 : 0;
         cUpdateWeek(dataCopy);
-        updateWeek({id:dataCopy.id,field:'is_promo',value:dataCopy.is_promo},(e)=>{});
+        updateWeek({id:dataCopy.id,field:'is_promo',value:dataCopy.is_promo,...user},(e)=>{});
       }
       const handleSeasonalChange = (event) => {
         dataCopy.is_seasonal = event.target.checked ? 1 : 0;
         cUpdateWeek(dataCopy);
-        updateWeek({id:dataCopy.id,field:'is_seasonal',value:dataCopy.is_seasonal},(e)=>{});
+        updateWeek({id:dataCopy.id,field:'is_seasonal',value:dataCopy.is_seasonal,...user},(e)=>{});
       }
     return(
         

@@ -1,6 +1,7 @@
+import { useContext } from "react";
 import { createContext,useEffect, useState } from "react";
 import { getLocations, insertLocation, getStore } from "../../IO/DataIO";
-
+import { UserContext } from "../user-context/user-context";
 export const LocationContext = createContext(
     {
         locations:[],
@@ -18,7 +19,7 @@ export const LocationContextProvider = ({children}) =>{
     const [locations, setLocations] = useState([]);
     const [section, setSection] = useState('Ambient');
     const [store, setStore] = useState([]);
-
+    const {user} = useContext(UserContext);
     useEffect(() => {
         console.log('loading Locations')
         const f = (data) =>{
@@ -26,7 +27,7 @@ export const LocationContextProvider = ({children}) =>{
             
             setLocations(data);
         }
-        getLocations({section:section},f);
+        getLocations({section:section,...user},f);
     },[section]);
 
     useEffect(() => {
@@ -36,8 +37,8 @@ export const LocationContextProvider = ({children}) =>{
             
             setStore(data);
         }
-        getStore({section:section},f);
-    },[]);
+        getStore({section:section,...user},f);
+    },[user]);
 
     const cUpdateLocation = (data) =>{
         let tLocations = [...locations];
@@ -59,11 +60,11 @@ export const LocationContextProvider = ({children}) =>{
             if(data.length > 0)
                 setLocations(data);
         }
-        getLocations({section:section},f);
+        getLocations({section:section,...user},f);
     }
 
     const addLocation = (data) =>{
-        let req = {layout:data.layout_id};
+        let req = {layout:data.layout_id,...user};
         let c = 1;
         for(let i = 0;i<locations.length;i++)
         {

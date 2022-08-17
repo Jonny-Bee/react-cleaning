@@ -1,10 +1,11 @@
 
 const api_url = 'https://wp-clean.herokuapp.com/';
 
-export const getWeeks = (onLoaded) =>{
+export const getWeeks = (req,onLoaded) =>{
     try{
+        let params = new URLSearchParams(req).toString();
         console.log('loading...')
-        fetch(api_url + 'weeks/')
+        fetch(api_url + 'weeks/?'+ params)
         .then(res => res.json())
         .then(data => {onLoaded(data)});
     }
@@ -27,7 +28,19 @@ export const updateWeek = (req,onLoaded) =>{
         console.log(error);
     }
 }
-
+export const Login = (req,onLoaded) => {
+    try{
+        let params = new URLSearchParams(req).toString();
+        console.log('loading...')
+        fetch(api_url + 'login/?' + params,{method:'POST'})
+        .then(res => res.json())
+        .then(data => {onLoaded(data)});
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
 export const updateLayout = (req) =>{
     try{
         let params = new URLSearchParams(req).toString();
@@ -71,9 +84,9 @@ export const getLocations = (req,onLoaded) => {
 }
 export const getStore = (req,onLoaded) => {
     try{
-        
+        let params = new URLSearchParams(req).toString();
         console.log('loading...')
-        fetch(api_url + 'store/')
+        fetch(api_url + 'store/?' + params)
         .then(res => res.json())
         .then(data => {onLoaded(data)});
     }

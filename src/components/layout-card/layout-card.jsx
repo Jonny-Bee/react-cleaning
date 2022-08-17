@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { updateLayout } from "../../IO/DataIO";
 import { LayoutContext } from "../../contexts/layout-context/layout-context";
+import { UserContext } from "../../contexts/user-context/user-context";
 import Form from 'react-bootstrap/Form';
 const LayoutCard = (props) => {
 
@@ -16,12 +17,12 @@ const LayoutCard = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const weeks = [4,6,8,16,26,52];
-
+    const {user} = useContext(UserContext);
     const handleChange = (event)  =>{
         tLayout.frequency = event.target.value;
     }
     const handleSave= (event)  =>{
-        updateLayout({id:tLayout.id,field:'frequency',value:tLayout.frequency})
+        updateLayout({id:tLayout.id,field:'frequency',value:tLayout.frequency,...user})
         cUpdateLayout(tLayout);
     }
         return(

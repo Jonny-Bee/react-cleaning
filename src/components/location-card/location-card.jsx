@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { updateLocation } from "../../IO/DataIO";
 import { LocationContext } from "../../contexts/location-context/location-context";
-
+import { UserContext } from "../../contexts/user-context/user-context";
 import Form from 'react-bootstrap/Form';
 
 
@@ -17,7 +17,7 @@ const LocationCard = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const {cUpdateLocation } = useContext(LocationContext);
-
+  const {user} = useContext(UserContext);
     const tLocation = {...props.location};
     let overdue = false;
     
@@ -38,7 +38,7 @@ const LocationCard = (props) => {
     const handleChangeDate = (event)  =>{
         tLocation.last_clean = new Date(event.target.value).toISOString().slice(0, 19).replace('T', ' ');
         cUpdateLocation(tLocation);
-        updateLocation({bay_id:tLocation.bay_id,field:'last_clean',value:tLocation.last_clean});
+        updateLocation({bay_id:tLocation.bay_id,field:'last_clean',value:tLocation.last_clean,...user});
     }
     
         return(

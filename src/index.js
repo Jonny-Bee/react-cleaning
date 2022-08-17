@@ -8,10 +8,12 @@ import { LayoutContextProvider } from './contexts/layout-context/layout-context'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { LocationContextProvider } from './contexts/location-context/location-context';
 import { BrowserRouter } from 'react-router-dom';
+import { UserProvider } from './contexts/user-context/user-context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <UserProvider>
     <CalenderProvider>
       <LayoutContextProvider>
         <LocationContextProvider>
@@ -19,6 +21,7 @@ root.render(
         </LocationContextProvider>
       </LayoutContextProvider>
     </CalenderProvider>
+    </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

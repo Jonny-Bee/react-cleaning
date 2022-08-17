@@ -2,9 +2,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Card } from "react-bootstrap";
-
+import { UserContext } from '../../contexts/user-context/user-context';
+import { useContext } from 'react';
+import LoginScreen from '../login-component/login-component';
 const Home= () =>{
-
+    const {user} = useContext(UserContext);
+    if(user.hash !== undefined)
     return (
         <Container >
         <Card className='mt-5'>
@@ -59,5 +62,8 @@ const Home= () =>{
             
         
     )
+    else{
+        return(<LoginScreen/>)
+    }
 }
 export default Home;
