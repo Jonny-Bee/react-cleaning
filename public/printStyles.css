@@ -27,7 +27,9 @@
     margin: 2%;
     scale: 25%;
 }
-
+.p_date{
+    font-size: xx-small;
+}
 .p_bold{
     font-weight: 700;
 }

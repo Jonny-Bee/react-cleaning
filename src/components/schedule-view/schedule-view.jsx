@@ -118,7 +118,7 @@ const SheduleView = (props) =>{
                 <thead><tr className='p_heading' height='30px'>
                     <th>Layout</th>
                     <th>Bay</th>
-                    {tableWeeks.map((week,count) =>( <td key={count}className='p_center'>{week.toLocaleDateString()}</td>))}
+                    {tableWeeks.map((week,count) =>( <td key={count}className='p_center p_date'>{week.toLocaleDateString()}</td>))}
                 </tr></thead><tbody>
             
             {_locations.map((location,count) =>(
