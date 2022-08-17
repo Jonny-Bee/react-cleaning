@@ -1,12 +1,13 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { NavItem } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './nav-bar.styles.css';
 import { UserContext } from '../../contexts/user-context/user-context';
 import { useContext } from 'react';
-
-
+import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 const TopNav = (props) =>{
 
     
@@ -22,14 +23,16 @@ const TopNav = (props) =>{
             <Navbar.Collapse id="basic-navbar-nav">
               
               <Nav className="ms-auto ">
-              <Nav.Link hidden={loggedOut} to="/schedule/">Cleaning Schedule</Nav.Link>
-              <Nav.Link hidden={loggedOut} to="/weekly/">Weekly Sheet</Nav.Link>
+                <LinkContainer to="/schedule/"><NavItem hidden={loggedOut} >Cleaning Schedule</NavItem></LinkContainer>
+              
+                <LinkContainer to="/weekly/"><NavItem hidden={loggedOut} >Weekly Sheet</NavItem></LinkContainer>
+                
               <NavDropdown className='mr-2' title="Cleaning Admin" id="basic-nav-dropdown">
-              <NavDropdown.Item disabled={loggedOut} to="/locations/">Location Management</NavDropdown.Item>
-              <NavDropdown.Item disabled={loggedOut} to="/layouts/">Layout Management</NavDropdown.Item>
+              <LinkContainer to="/locations/"><NavDropdown.Item disabled={loggedOut} >Location Management</NavDropdown.Item></LinkContainer>
+              <LinkContainer to="/layouts/"><NavDropdown.Item disabled={loggedOut} >Layout Management</NavDropdown.Item></LinkContainer>
               
               <NavDropdown.Divider />
-              <NavDropdown.Item disabled={loggedOut} to="/calender/">Calender Management</NavDropdown.Item>
+              <LinkContainer to="/calender/"> <NavDropdown.Item disabled={loggedOut} >Calender Management</NavDropdown.Item></LinkContainer>
             </NavDropdown>
               </Nav>
              
