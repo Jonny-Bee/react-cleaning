@@ -14,7 +14,7 @@ const LoginScreen= () =>{
     const handleSubmit = (event) => {
         event.preventDefault();
         let f = (ev) => {
-            setUserObject(ev[0]);
+            setUserObject(ev);
         }
         Login({user_name:userName,pass_word:pass},f)
       };
