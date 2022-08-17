@@ -19,7 +19,7 @@ export const CalenderProvider = ({ children }) => {
             if(data.length > 0)
                 setWeeks(data);
         }
-        getWeeks(f);
+        getWeeks({...user},f);
     },[user]);
 
     const setWeeksData = (data) =>{
