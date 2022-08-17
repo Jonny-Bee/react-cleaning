@@ -51,25 +51,28 @@ const LocationView= (props) => {
 
         <Container fluid className='mb-5' id='printable'>
             <table cellPadding="0" cellSpacing="0" className='p_row_interactive'>
+                <thead>
                 <tr className='p_heading' height='30px'>
                     <th>Layout</th>
                     <th>Bay</th>
                     <th>Last Cleaned</th>
                     <th>Next Clean</th>
                 </tr>
-            
+                </thead>
+                <tbody>
             {locations.map((location,count) =>(
                 <LocationCard key={count} location={location} count={count}/>
             )
 
             )}
+            </tbody>
             </table>
             
         </Container>
 
         <Container fluid>
-            <Button variant="primary" onClick={handlePrint}> print </Button>
-            <Button variant="primary" onClick={handleShow}> Add Locations</Button>
+            <Button hidden variant="primary" onClick={handlePrint}> print </Button>
+            <Button size = 'sm' variant="danger" onClick={handleShow}> Add Locations</Button>
         </Container>
 
         <Modal show={show} onHide={handleClose} size="lg"

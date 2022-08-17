@@ -18,7 +18,7 @@ const TopNav = (props) =>{
         <Navbar sticky='top'  expand="lg" variant='dark' className=' p-3 deep-green'>
           <Container fluid>
           
-            <Navbar.Brand to='/'> 725 Cleaning Admin</Navbar.Brand>
+            <Navbar.Brand as={NavLink} to='/'> 725 Cleaning Admin</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               
