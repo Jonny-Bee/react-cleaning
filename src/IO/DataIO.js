@@ -32,7 +32,7 @@ export const Login = (req,onLoaded) => {
     try{
         let params = new URLSearchParams(req).toString();
         console.log('loading...')
-        fetch(api_url + 'login/?' + params,{method:'POST',mode: 'no-cors'})
+        fetch(api_url + 'login/?' + params)
         .then(res => res.json())
         .then(data => {onLoaded(data)});
     }
