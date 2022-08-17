@@ -23,7 +23,7 @@ const TopNav = (props) =>{
             <Navbar.Collapse id="basic-navbar-nav">
               
               <Nav className="ms-auto ">
-              <Nav.Link as={NavLink} hidden={loggedOut} to="/schedule/"><Link></Link>Cleaning Schedule</Nav.Link>
+              <Nav.Link as={NavLink} hidden={loggedOut} to="/schedule/">Cleaning Schedule</Nav.Link>
               <Nav.Link as={NavLink} hidden={loggedOut} to="/weekly/">Weekly Sheet</Nav.Link>
               <NavDropdown  className='mr-2' title="Cleaning Admin" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} disabled={loggedOut} to="/locations/">Location Management</NavDropdown.Item>
