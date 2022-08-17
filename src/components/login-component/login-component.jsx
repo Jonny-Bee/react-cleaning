@@ -10,11 +10,11 @@ import { useContext } from 'react';
 const LoginScreen= () =>{
     const [userName, setName] = useState('');
     const [pass, setPass] = useState('');
-    const {user,setUser} = useContext(UserContext);
+    const {user, setUserObject } = useContext(UserContext);
     const handleSubmit = (event) => {
         event.preventDefault();
         let f = (ev) => {
-            setUser(ev);
+            setUserObject(ev);
         }
         Login({user_name:userName,pass_word:pass},f)
       };

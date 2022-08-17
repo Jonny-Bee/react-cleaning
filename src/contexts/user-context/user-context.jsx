@@ -3,7 +3,8 @@ import { getWeeks } from "../../IO/DataIO";
 
 export const UserContext = createContext({
     user:{},
-    setUser:()=>{}
+    setUser:()=>{},
+    setUserObject:()=>{}
 });
 
 
