@@ -13,7 +13,7 @@ const WeeklyView = (props) => {
 
     const {store} = useContext(LocationContext);
     const {weeks} = useContext(CalenderContext);
-    const [selectedWeek,selectWeek] = useState()
+    const [selectedWeek,selectWeek] = useState(new Date(weeks[0].start_date))
     const [cleaningList, setCleaningList] = useState([]);
     const [showOverDue, setOverDue] = useState(true);
     
