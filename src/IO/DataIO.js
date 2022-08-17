@@ -3,9 +3,9 @@ const api_url = 'https://wp-clean.herokuapp.com/';
 
 export const getWeeks = (req,onLoaded) =>{
     try{
-        let params = new URLSearchParams(req).toString();
+       
         console.log('loading...')
-        fetch(api_url + 'weeks/?'+ params)
+        fetch(api_url + 'weeks/')
         .then(res => res.json())
         .then(data => {onLoaded(data)});
     }
