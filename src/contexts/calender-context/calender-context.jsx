@@ -20,7 +20,7 @@ export const CalenderProvider = ({ children }) => {
                 setWeeks(data);
         }
         getWeeks({...user},f);
-    },[user]);
+    },[]);
 
     const setWeeksData = (data) =>{
 
