@@ -1,5 +1,7 @@
 import { createContext,useEffect, useState } from "react";
+import { UserContext } from "../user-context/user-context";
 import { getWeeks } from "../../IO/DataIO";
+import { useContext } from "react";
 export const CalenderContext = createContext({
     weeks:[],
     setWeeks:()=>{}
@@ -9,7 +11,7 @@ export const CalenderContext = createContext({
 export const CalenderProvider = ({ children }) => {
 
     const [weeks, setWeeks] = useState([]);
-
+    const {user} = useContext(UserContext);
     useEffect(() => {
         console.log('loading Calender')
         const f = (data) =>{
@@ -18,7 +20,7 @@ export const CalenderProvider = ({ children }) => {
                 setWeeks(data);
         }
         getWeeks(f);
-    },[]);
+    },[user]);
 
     const setWeeksData = (data) =>{
 
