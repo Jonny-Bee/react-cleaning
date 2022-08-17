@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
    
 
     const setUserObject = (data) =>{
-
+        console.log('set user called with ' + data)
         setUser(data);
     }
    
