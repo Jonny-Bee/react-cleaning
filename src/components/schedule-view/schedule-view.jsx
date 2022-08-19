@@ -98,7 +98,7 @@ const SheduleView = (props) =>{
                         {
                             weeks.map((week,count) => {
                             let myDate = new Date(week.start_date);
-                            return <option key={'o'+ count} value={week.id}>{myDate.toLocaleDateString()}</option>
+                            return <option key={myDate.toLocaleDateString()+week.id+'_'+count} value={week.id}>{myDate.toLocaleDateString()}</option>
                         })
                         }
                     </Form.Select>
@@ -113,22 +113,22 @@ const SheduleView = (props) =>{
             <Container fluid className='mb-5 ' id='printable'>
                 {splitLocations.map((_locations,count) =>(
                     <>
-                    <h6 className='page_break p_title'>{section} cleaning Page {count+1} of {splitLocations.length}</h6>
-            <table cellPadding="0" cellSpacing="0" >
-                <thead><tr className='p_heading' height='30px'>
-                    <th>Layout</th>
-                    <th>Bay</th>
-                    {tableWeeks.map((week,count) =>( <td key={count}className='p_center p_date'>{week.toLocaleDateString()}</td>))}
+                    <h6 className='page_break p_title' key={count+'_title'}>{section} cleaning Page {count+1} of {splitLocations.length}</h6>
+            <table cellPadding="0" cellSpacing="0"  key={count+'_table'} >
+                <thead key={count+'_head'}><tr className='p_heading' height='30px' key={count+'_trow'}>
+                    <th key={count+'_layout'}>Layout</th>
+                    <th key={count+'_bay'}>Bay</th>
+                    {tableWeeks.map((week,count2) =>( <td key={count+'_date_'+count2}className='p_center p_date'>{week.toLocaleDateString()}</td>))}
                 </tr></thead><tbody>
             
-            {_locations.map((location,count) =>(
-                <ScheduleRow key={count} location={location} count={count} weeks={tableWeeks} promo={weeks}/>
+            {_locations.map((location,count2) =>(
+                <ScheduleRow key={location.group_name + '_row_' + location.bay} location={location} count={count} weeks={tableWeeks} promo={weeks}/>
             )
 
             )}
             </tbody>
             </table>
-            <div className='foot'>WAHS 2526 (01/22)</div>
+            <div key={'foot_' + count}className='foot'>WAHS 2526 (01/22)</div>
             </>
             ))}
             

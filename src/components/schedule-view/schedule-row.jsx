@@ -118,7 +118,7 @@ const ScheduleRow = (props) => {
             }
 
         </tr>
-        <tr > <td colSpan={15}>-</td></tr>
+        <tr ><td colSpan={15}>-</td></tr>
     
     
     </>)

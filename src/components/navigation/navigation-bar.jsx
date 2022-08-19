@@ -16,7 +16,7 @@ const TopNav = (props) =>{
   const loggedOut = user.hash !== undefined ? false : true;
 
     return (
-        <Navbar sticky='top'  expand="md" variant='dark' className='deep-green'>
+        <Navbar sticky='top'  expand="md" variant='dark' className='bg-primary'>
           
           <Container fluid className='p-3'>
           
