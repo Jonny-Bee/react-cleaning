@@ -37,20 +37,20 @@ const LocationView= (props) => {
             return true;
         return false;
     }
-    
+   
     return (
         <>
         <Container fluid className='mb-5'>
             <h2>Locations</h2>
 
              <Form.Group className="mb-3">
-                <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange}>
-                <option value='Ambient' selected={isSelected('Ambient')}>Ambient</option>
-                <option value='Chilled' selected={isSelected('Chilled')}>Chilled</option>
-                <option value='Frozen' selected={isSelected('Frozen')}>Frozen</option>
-                <option value='BWS' selected={isSelected('BWS')}>BWS</option>
-                <option value='BreadandCakes' selected={isSelected('BreadandCakes')}>Bread and Cakes</option>
-                <option value='FRV' selected={isSelected('FRV')}>Fruit and Veg</option> 
+                <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange} defaultValue={section}>
+                <option value='Ambient' >Ambient</option>
+                <option value='Chilled' >Chilled</option>
+                <option value='Frozen' >Frozen</option>
+                <option value='BWS' >BWS</option>
+                <option value='BreadandCakes' >Bread and Cakes</option>
+                <option value='FRV' >Fruit and Veg</option> 
                 </Form.Select>
              </Form.Group>
         </Container>
