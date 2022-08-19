@@ -13,7 +13,7 @@ import ScheduleRow from './schedule-row';
 
 const SheduleView = (props) =>{
     const {locations,setSection,section} = useContext(LocationContext);
-    const {layouts,setGroup} = useContext(LayoutContext);
+    const {layouts, setGroup, group} = useContext(LayoutContext);
     const {weeks} = useContext(CalenderContext);
     const [tableWeeks,setTableWeeks] = useState([]);
     

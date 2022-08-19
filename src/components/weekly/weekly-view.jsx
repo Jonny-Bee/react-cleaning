@@ -40,7 +40,7 @@ const WeeklyView = (props) => {
             }
         }
         setCleaningList(_cleaningList);
-        console.log(_cleaningList)
+        console.log(_cleaningList + ' ' + selectedWeek.toLocaleDateString())
     },[selectedWeek]);
 
     const handlePrint = (e)=>{
