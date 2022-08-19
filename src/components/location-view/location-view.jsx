@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import { LayoutContext } from '../../contexts/layout-context/layout-context';
 
 const LocationView= (props) => {
-    const {locations,setSection, addLocation} = useContext(LocationContext);
+    const {locations,setSection, addLocation,section} = useContext(LocationContext);
     const {layouts,setGroup} = useContext(LayoutContext);
 
     const handleSectionChange = (event) => {
@@ -32,7 +32,11 @@ const LocationView= (props) => {
         console.log({layout_id:selectedLayout,date:formattedDate});
         addLocation({layout_id:selectedLayout,date:formattedDate});
     }
-    
+    const isSelected = (value) => {
+        if(value === section)
+            return true;
+        return false;
+    }
     
     return (
         <>
@@ -41,12 +45,12 @@ const LocationView= (props) => {
 
              <Form.Group className="mb-3">
                 <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange}>
-                <option value='Ambient'>Ambient</option>
-                <option value='Chilled'>Chilled</option>
-                <option value='Frozen'>Frozen</option>
-                <option value='BWS'>BWS</option>
-                <option value='BreadandCakes'>Bread and Cakes</option>
-                <option value='FRV'>Fruit and Veg</option> 
+                <option value='Ambient' selected={isSelected('Ambient')}>Ambient</option>
+                <option value='Chilled' selected={isSelected('Chilled')}>Chilled</option>
+                <option value='Frozen' selected={isSelected('Frozen')}>Frozen</option>
+                <option value='BWS' selected={isSelected('BWS')}>BWS</option>
+                <option value='BreadandCakes' selected={isSelected('BreadandCakes')}>Bread and Cakes</option>
+                <option value='FRV' selected={isSelected('FRV')}>Fruit and Veg</option> 
                 </Form.Select>
              </Form.Group>
         </Container>

@@ -36,11 +36,11 @@ const WeeklyView = (props) => {
                 _cleaningList.push({location:store[i],isOverDue:true});
             }
             else{
-                console.log(nextDate.toLocaleDateString() +' -- '+ thisWeek.toLocaleDateString());
+              //  console.log(nextDate.toLocaleDateString() +' -- '+ thisWeek.toLocaleDateString());
             }
         }
         setCleaningList(_cleaningList);
-        console.log(_cleaningList + ' ' + selectedWeek.toLocaleDateString())
+       // console.log(_cleaningList + ' ' + selectedWeek.toLocaleDateString())
     },[selectedWeek]);
 
     const handlePrint = (e)=>{
