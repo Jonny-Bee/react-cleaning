@@ -6,6 +6,7 @@ import './nav-bar.styles.css';
 import { UserContext } from '../../contexts/user-context/user-context';
 import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom'
+import { Stack } from 'react-bootstrap';
 
 
 const TopNav = (props) =>{
@@ -15,27 +16,32 @@ const TopNav = (props) =>{
   const loggedOut = user.hash !== undefined ? false : true;
 
     return (
-        <Navbar sticky='top'  expand="lg" variant='dark' className=' p-3 deep-green'>
-          <Container fluid>
+        <Navbar sticky='top'  expand="md" variant='dark' className='deep-green'>
+          
+          <Container fluid className='p-3'>
           
             <Navbar.Brand as={NavLink} to='/'> 725 Cleaning Admin</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               
               <Nav className="ms-auto ">
-              <Nav.Link as={NavLink} hidden={loggedOut} to="/schedule/">Cleaning Schedule</Nav.Link>
-              <Nav.Link as={NavLink} hidden={loggedOut} to="/weekly/">Weekly Sheet</Nav.Link>
-              <NavDropdown  className='mr-2' title="Cleaning Admin" id="basic-nav-dropdown">
+              <NavDropdown  disabled={loggedOut} title="Cleaning Admin" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} disabled={loggedOut} to="/locations/">Location Management</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} disabled={loggedOut} to="/layouts/">Layout Management</NavDropdown.Item>
               
               <NavDropdown.Divider />
               <NavDropdown.Item as={NavLink} disabled={loggedOut} to="/calender/">Calender Management</NavDropdown.Item>
-            </NavDropdown>
+              </NavDropdown>
+              <Nav.Link as={NavLink} disabled={loggedOut} to="/schedule/">Cleaning Schedule</Nav.Link>
+              <Nav.Link as={NavLink} disabled={loggedOut} to="/weekly/">Weekly Sheet</Nav.Link>
+              
               </Nav>
              
             </Navbar.Collapse>
+            
           </Container>
+          
+         
         </Navbar>
       );
 }

@@ -16,3 +16,10 @@
 .deep-green{
     background-color: rgb(0, 121, 60);
 }
+.block-bar{
+    clear: both;
+    display: block;
+    background-color: rgb(202, 224, 0);
+    min-height: 5px;
+    min-width: 100%;
+}

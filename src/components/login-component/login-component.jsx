@@ -21,7 +21,7 @@ const LoginScreen= () =>{
 
     return (
         <Container >
-        <Card className='mt-5'>
+        <Card className='mt-5  '>
         <Card.Header>Login</Card.Header>
             <Card.Body>
             <Form onSubmit={handleSubmit}>
@@ -29,7 +29,7 @@ const LoginScreen= () =>{
                     <Form.Label>User:</Form.Label>
                     <Form.Control type="text" placeholder="Enter User Name" onChange={(e) => setName(e.target.value)}/>
                     <Form.Text className="text-muted">
-                    Usually w plus store number.
+                    
                     </Form.Text>
                 </Form.Group>
 
