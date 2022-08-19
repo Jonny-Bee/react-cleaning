@@ -44,7 +44,7 @@ const LocationView= (props) => {
             <h2>Locations</h2>
 
              <Form.Group className="mb-3">
-                <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange} defaultValue={section}>
+                <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange} value={section}>
                 <option value='Ambient' >Ambient</option>
                 <option value='Chilled' >Chilled</option>
                 <option value='Frozen' >Frozen</option>
