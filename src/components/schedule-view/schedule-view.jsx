@@ -80,7 +80,7 @@ const SheduleView = (props) =>{
                 <Col>
                  <Form.Group className="mb-3">
                    
-                    <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange}>
+                    <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange} value={section}>
                         <option value='Ambient'>Ambient</option>
                         <option value='Chilled'>Chilled</option>
                         <option value='Frozen'>Frozen</option>

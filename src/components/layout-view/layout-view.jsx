@@ -8,7 +8,7 @@ import LayoutCard from '../layout-card/layout-card';
 
 
 const LayoutView = (props) => {
-    const {layouts,setGroup} = useContext(LayoutContext);
+    const {layouts,setGroup,section} = useContext(LayoutContext);
 
     const handleSectionChange = (event) => {
         
@@ -22,7 +22,7 @@ const LayoutView = (props) => {
             <h2>Layout Groups</h2>
 
              <Form.Group className="mb-3">
-                <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange}>
+                <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange}  value={section}>
                 <option value='Ambient'>Ambient</option>
                 <option value='Chilled'>Chilled</option>
                 <option value='Frozen'>Frozen</option>

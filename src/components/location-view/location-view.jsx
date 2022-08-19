@@ -13,7 +13,7 @@ const LocationView= (props) => {
     const {layouts,setGroup} = useContext(LayoutContext);
 
     const handleSectionChange = (event) => {
-        
+        if(!event.target.value) return;
         setSection(event.target.value);
         setGroup(event.target.value);
     }
@@ -45,6 +45,7 @@ const LocationView= (props) => {
 
              <Form.Group className="mb-3">
                 <Form.Select size='sm' aria-label="Section" onChange={handleSectionChange} value={section}>
+                <option>Select layout group</option>
                 <option value='Ambient' >Ambient</option>
                 <option value='Chilled' >Chilled</option>
                 <option value='Frozen' >Frozen</option>
