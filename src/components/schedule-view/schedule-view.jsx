@@ -115,14 +115,15 @@ const SheduleView = (props) =>{
                     <>
                     <h6 className='page_break p_title' key={count+'_title'}>{section} cleaning Page {count+1} of {splitLocations.length}</h6>
             <table cellPadding="0" cellSpacing="0"  key={count+'_table'} >
-                <thead key={count+'_head'}><tr className='p_heading' height='30px' key={count+'_trow'}>
+                <thead key={count+'_head'}>
+                    <tr className='p_heading' height='30px' key={count+'_trow'}>
                     <th key={count+'_layout'}>Layout</th>
                     <th key={count+'_bay'}>Bay</th>
                     {tableWeeks.map((week,count2) =>( <td key={count+'_date_'+count2}className='p_center p_date'>{week.toLocaleDateString()}</td>))}
                 </tr></thead><tbody>
             
             {_locations.map((location,count2) =>(
-                <ScheduleRow key={location.group_name + '_row_' + location.bay} location={location} count={count} weeks={tableWeeks} promo={weeks}/>
+                <ScheduleRow key={location.group_name + '_row_' + location.bay} location={location} count={count2} weeks={tableWeeks} promo={weeks}/>
             )
 
             )}

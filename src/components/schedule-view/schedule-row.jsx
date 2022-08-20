@@ -50,6 +50,7 @@ const ScheduleRow = (props) => {
         }
         return false;
     }
+   
     const findNearestWeek = (idx) => {
         
         for(var i = 1; i <= props.weeks.length; i++)
@@ -118,6 +119,15 @@ const ScheduleRow = (props) => {
             }
 
         </tr>
+        {!props.location.temp_check ? '' : (
+            <tr className={bgClass}>
+            <td className='p_cell'>Restock Temp</td>
+            <td className='p_cell p_center' width='3%'></td>
+            {
+                highlightWeeks.map((n)=>( <td key={props.location.bay_id + 'hd'+ n + Math.random()}className={'p_cell p_center'+ getHighlight(n)} width='6%'></td>))
+            }
+            </tr>
+        )}
         <tr ><td colSpan={15}>-</td></tr>
     
     

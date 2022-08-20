@@ -10,6 +10,7 @@ import 'bootswatch/dist/lumen/bootstrap.min.css';
 import { LocationContextProvider } from './contexts/location-context/location-context';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './contexts/user-context/user-context';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

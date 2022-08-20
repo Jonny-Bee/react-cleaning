@@ -13,9 +13,9 @@ export const CalenderProvider = ({ children }) => {
     const [weeks, setWeeks] = useState([]);
     const {user} = useContext(UserContext);
     useEffect(() => {
-        console.log('loading Calender')
+       // console.log('loading Calender')
         const f = (data) =>{
-            console.log(data);
+          //  console.log(data);
             if(data.length > 0)
                 setWeeks(data);
         }
@@ -28,14 +28,14 @@ export const CalenderProvider = ({ children }) => {
     }
     const cUpdateWeek = (data) =>{
         let tWeeks = [...weeks];
-        console.log(data);
+        //console.log(data);
         for(var i = 0; i < tWeeks.length; i++)
         {
             
             if(tWeeks[i].id === data.id)
             {
                 tWeeks[i] = data;
-                console.log('found match');
+               // console.log('found match');
             }
         }
         setWeeksData(tWeeks);
