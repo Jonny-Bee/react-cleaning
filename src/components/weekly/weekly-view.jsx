@@ -93,7 +93,7 @@ const WeeklyView = (props) => {
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Button variant="danger" size='sm' onClick={handlePrint} disabled={getDisabled()}> Print Sheet </Button>
+                    <Button variant="info" size='sm' onClick={handlePrint} disabled={getDisabled()}><i class="fa-solid fa-print"></i> Print Sheet </Button>
                 </Col>
              </Row>
         </Container>

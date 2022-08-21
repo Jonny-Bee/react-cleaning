@@ -16,11 +16,12 @@ const TopNav = (props) =>{
   const loggedOut = user.hash !== undefined ? false : true;
 
     return (
-        <Navbar sticky='top'  expand="md" variant='dark' className='bg-primary'>
+        <Navbar sticky='top'  expand="md" variant='dark' className='bg-success'>
           
           <Container fluid className='p-3'>
           
-            <Navbar.Brand as={NavLink} to='/'> 725 Cleaning Admin</Navbar.Brand>
+            <Navbar.Brand as={NavLink} to='/'>
+            <i className="fa-solid fa-thumbs-up mr-1"></i> Store Cleaning </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               

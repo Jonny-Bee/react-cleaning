@@ -68,7 +68,11 @@ const Home = () => {
             </Card>
           </Col>
         </Row>
-        <StackedChart cleaning={cleaningList} store={store}/>
+        <Card className="mt-5">
+              <Card.Header>Cleaning at a glance</Card.Header>
+              <StackedChart cleaning={cleaningList} store={store}/>
+          </Card>
+        
         <Card className="mt-5">
           <Card.Header>Whats New?</Card.Header>
           <Card.Body>

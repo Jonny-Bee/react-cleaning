@@ -33,14 +33,14 @@ const LayoutCard = (props) => {
     <>
       <Card className="highlight" onClick={handleShow}>
         <Card.Body className={bgClass}>
-          <Row lg={3} md={3} sm={3} xs={1}>
-            <Col lg={1} md={1}>
+          <Row  xs={3}>
+            <Col xs={2}>
               {props.layout.id}{" "}
             </Col>
-            <Col lg={9} md={9}>
+            <Col xs={7}>
               {props.layout.group_name.toUpperCase()}
             </Col>
-            <Col lg={2} md={2} className="rightAlign">
+            <Col xs={3} className="rightAlign">
               {props.layout.frequency} Weeks
             </Col>
           </Row>

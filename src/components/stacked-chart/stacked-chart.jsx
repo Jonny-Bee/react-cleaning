@@ -71,7 +71,7 @@ const StackedChart = (props) => {
             data={chartData}
             margin={{
               top: 50,
-              right: 10,
+              right: 25,
               left: 0,
               bottom: 20,
             }}
@@ -81,9 +81,9 @@ const StackedChart = (props) => {
             <YAxis />
             <Tooltip/>
             <Legend />
-            <Bar dataKey="Bays" stackId="a" fill="#55ff99" />
+            <Bar dataKey="Bays" stackId="a" fill="#22cc66" />
             <Bar dataKey="Overdue" stackId="c" fill="#ff6666" />
-            <Bar dataKey="Scheduled" stackId="b" fill="#ffbb99" />
+            <Bar dataKey="Scheduled" stackId="b" fill="#ffbb22" />
             
           </BarChart>
           </ResponsiveContainer>

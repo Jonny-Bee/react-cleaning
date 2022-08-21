@@ -39,12 +39,13 @@ const LayoutView = (props) => {
                     <Col  lg={2} md={2} className='rightAlign'><h6>Frequency</h6></Col>
                     
                 </Row> 
-
+            
             {layouts.map((layout,count) =>(
                 <LayoutCard key={count} layout={layout} count={count}/>
             )
 
             )}
+            
         </Container>
     )
 

@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CalenderProvider } from './contexts/calender-context/calender-context';
 import { LayoutContextProvider } from './contexts/layout-context/layout-context';
-import 'bootswatch/dist/lumen/bootstrap.min.css';
+import 'bootswatch/dist/simplex/bootstrap.min.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import { LocationContextProvider } from './contexts/location-context/location-context';
 import { BrowserRouter } from 'react-router-dom';

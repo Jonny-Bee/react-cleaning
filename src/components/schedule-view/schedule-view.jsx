@@ -105,7 +105,7 @@ const SheduleView = (props) =>{
                 </Form.Group>
                 </Col>
                 <Col sm={2} >
-                <Button size='sm' className=''variant="danger" disabled={getDisabled()} onClick={handlePrint}> Print Sheets </Button>
+                <Button size='sm' className=''variant="info" disabled={getDisabled()} onClick={handlePrint}><i class="fa-solid fa-print"></i> Print Sheets </Button>
                 </Col>
                 </Row>
             </Container>
