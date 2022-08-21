@@ -52,7 +52,7 @@ const StackedChart = (props) => {
               name: 'Frozen',
               Scheduled: frozen.filter(item => !item.isOverDue).length,
               Overdue: frozen.filter(item => item.isOverDue).length,
-              Bays: props.store.filter(item => item.section === 'FRV').length,
+              Bays: props.store.filter(item => item.section === 'Frozen').length,
         }
        
       ];
