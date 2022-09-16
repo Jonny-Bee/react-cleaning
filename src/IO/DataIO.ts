@@ -4,14 +4,7 @@ import type { layout } from "../contexts/layout-context/layout-context";
 import { location } from "../contexts/location-context/location-context";
 const api_url = 'https://wp-clean.herokuapp.com/';
 
-//////////////////////////////////////////////////////
-//
-//
-//          TODO: Create types
-//
-//
-//
-////////////////////////////////////////////////////
+
 
 
 export const getWeeks = async( onLoaded:(data:week[]) => void) => {
@@ -27,7 +20,7 @@ export const getWeeks = async( onLoaded:(data:week[]) => void) => {
         console.log(error);
     }
 }
-//{ id: dataCopy.id, field: "is_promo", value: dataCopy.is_promo, ...user }
+
 
 interface IUpdateWeekParams{
     [key: string]: string ;
