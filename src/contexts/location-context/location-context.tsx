@@ -1,24 +1,52 @@
-import { useContext } from "react";
+import { useContext , FC} from "react";
 import { createContext, useEffect, useState } from "react";
 import { getLocations, insertLocation, getStore } from "../../IO/DataIO";
 import { UserContext } from "../user-context/user-context";
-export const LocationContext = createContext({
+
+export type location = {
+  bay_id:number,
+  layout_id:number,
+  bay:number,
+  last_clean:string,
+  store_id:number,
+  id:number,
+  group_name:string,
+  frequency:number,
+  section:string,
+  temp_check?:boolean
+
+}
+interface ILocationContextProps{
+
+  locations:location[],
+  setLocations:(a:location[]) => void,
+  section:string,
+  setSection:(a:string) => void,
+  store:location[],
+  setStore:(a:location[]) => void
+
+}
+
+export const LocationContext = createContext<ILocationContextProps>({
   locations: [],
   setLocations: () => {},
-  section: null,
+  section: '',
   setSection: () => {},
   store: [],
   setStore: () => {},
 });
 
-export const LocationContextProvider = ({ children }) => {
-  const [locations, setLocations] = useState([]);
-  const [section, setSection] = useState("Ambient");
-  const [store, setStore] = useState([]);
+interface ILocationProviderProps{
+  children:React.ReactNode;
+}
+export const LocationContextProvider : FC<ILocationProviderProps> = ({ children }) => {
+  const [locations, setLocations] = useState<location[]>([]);
+  const [section, setSection] = useState<string>("Ambient");
+  const [store, setStore] = useState<location[]>([]);
   const { user } = useContext(UserContext);
   useEffect(() => {
     //console.log("loading Locations");
-    const f = (data) => {
+    const f = (data:location[]) => {
      // console.log(data);
 
       setLocations(data);
@@ -28,7 +56,7 @@ export const LocationContextProvider = ({ children }) => {
 
   useEffect(() => {
     //console.log("loading store");
-    const f = (data) => {
+    const f = (data:location[]) => {
       //console.log(data);
 
       setStore(data);
@@ -36,8 +64,8 @@ export const LocationContextProvider = ({ children }) => {
     getStore({ section: section, ...user }, f);
   }, [user]);
 
-  const cUpdateLocation = (data) => {
-    let tLocations = [...locations];
+  const cUpdateLocation = (data:location) => {
+    let tLocations:location[] = [...locations];
     //console.log(data);
     for (var i = 0; i < tLocations.length; i++) {
       if (tLocations[i].bay_id === data.bay_id) {
@@ -47,22 +75,23 @@ export const LocationContextProvider = ({ children }) => {
     }
     setLocations(tLocations);
   };
-  const reloadLocations = (e) => {
-    const f = (data) => {
+
+  const reloadLocations = () => {
+    const f = (data:location[]) => {
       //console.log(data);
       if (data.length > 0) setLocations(data);
     };
     getLocations({ section: section, ...user }, f);
   };
 
-  const addLocation = (data) => {
-    let req = { layout: data.layout_id, ...user };
+  const addLocation = (data:location) => {
+    let req = { layout: data.layout_id.toString(), ...user,bay:'-1',date:'' };
     let c = 1;
     for (let i = 0; i < locations.length; i++) {
-      c += locations[i].layout_id === parseInt(data.layout_id) ? 1 : 0;
+      c += locations[i].layout_id === data.layout_id ? 1 : 0;
     }
-    req.bay = c;
-    req.date = data.date;
+    req.bay = c.toString();
+    req.date = data.last_clean;
     insertLocation(req, reloadLocations);
   };
 
@@ -74,6 +103,7 @@ export const LocationContextProvider = ({ children }) => {
     section,
     setSection,
     addLocation,
+    setStore
   };
 
   return (

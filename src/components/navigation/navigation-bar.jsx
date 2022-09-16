@@ -13,7 +13,7 @@ const TopNav = (props) =>{
 
     
   const {user} = useContext(UserContext);
-  const loggedOut = user.hash !== undefined ? false : true;
+  const loggedOut = user.hash !== '' ? false : true;
 
     return (
         <Navbar sticky='top'  expand="md" variant='dark' className='bg-success'>

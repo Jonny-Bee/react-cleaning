@@ -31,7 +31,7 @@ const Home = () => {
     }
     setCleaningList(_cleaningList);
   }, [store]);
-  if (user.hash !== undefined) {
+  if (user.hash !== '') {
     // console.log(_cleaningList + ' ' + selectedWeek.toLocaleDateString())
 
     return (

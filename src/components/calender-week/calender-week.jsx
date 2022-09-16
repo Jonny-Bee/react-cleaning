@@ -20,7 +20,7 @@ const CalenderWeek = (props) => {
     cUpdateWeek(dataCopy);
     updateWeek(
       { id: dataCopy.id, field: "is_promo", value: dataCopy.is_promo, ...user },
-      (e) => {}
+      (e) => {} // add error handling
     );
   };
   const handleSeasonalChange = (event) => {
@@ -33,7 +33,7 @@ const CalenderWeek = (props) => {
         value: dataCopy.is_seasonal,
         ...user,
       },
-      (e) => {}
+      (e) => {} // add error handling
     );
   };
   return (

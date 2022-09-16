@@ -36,11 +36,11 @@ const WeeklyView = (props) => {
                 _cleaningList.push({location:store[i],isOverDue:true});
             }
             else{
-              //  console.log(nextDate.toLocaleDateString() +' -- '+ thisWeek.toLocaleDateString());
+                console.log(nextDate.toLocaleDateString() +' -- '+ thisWeek.toLocaleDateString());
             }
         }
         setCleaningList(_cleaningList);
-       // console.log(_cleaningList + ' ' + selectedWeek.toLocaleDateString())
+        console.log(_cleaningList.length + ' ' + selectedWeek.toLocaleDateString())
     },[selectedWeek]);
 
     const handlePrint = (e)=>{
@@ -93,7 +93,7 @@ const WeeklyView = (props) => {
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Button variant="info" size='sm' onClick={handlePrint} disabled={getDisabled()}><i class="fa-solid fa-print"></i> Print Sheet </Button>
+                    <Button variant="info" size='sm' onClick={handlePrint} disabled={getDisabled()}><i className="fa-solid fa-print"></i> Print Sheet </Button>
                 </Col>
              </Row>
         </Container>
