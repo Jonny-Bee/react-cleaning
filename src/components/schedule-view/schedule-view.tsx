@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import { LocationContext } from '../../contexts/location-context/location-context';
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
 import { iFramePrinter } from '../../utils/print-helper';
@@ -11,11 +11,11 @@ import { CalenderContext } from "../../contexts/calender-context/calender-contex
 import ScheduleRow from './schedule-row';
 
 
-const SheduleView = (props) =>{
+const SheduleView = () =>{
     const {locations,setSection,section} = useContext(LocationContext);
-    const {layouts, setGroup, group} = useContext(LayoutContext);
+    const {setGroup} = useContext(LayoutContext);
     const {weeks} = useContext(CalenderContext);
-    const [tableWeeks,setTableWeeks] = useState([]);
+    const [tableWeeks,setTableWeeks] = useState<Date[]>([]);
     
     const splitLocations = [];
     let tLoc = [];
@@ -33,17 +33,19 @@ const SheduleView = (props) =>{
         }
         
     }
-    const handlePrint = (e)=>{
+
+    const handlePrint = ()=>{
         iFramePrinter('printable');
     }
-    const setWeeks = (date) => {
+
+    const setWeeks = (date:string) => {
          let startDate;
          if(date)
             startDate = new Date(date);
          else
             startDate = new Date(weeks[0].start_date);
         startDate.setDate(startDate.getDate()  - startDate.getDay());
-         let tempWeeks = [];
+         let tempWeeks:Date[] = [];
          for(var i = 0; i < 13; i++)
          {
             let nextDate = new Date(startDate);
@@ -53,12 +55,12 @@ const SheduleView = (props) =>{
          setTableWeeks(tempWeeks);
     }
 
-    const handleSectionChange = (event) => {
+    const handleSectionChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
         if(event.target.value === '') return;
         setSection(event.target.value);
         setGroup(event.target.value);
     }
-    const handleDateChange = (event) => {
+    const handleDateChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
         if(event.target.value === '') return;
         let sDate = '';
         
@@ -105,7 +107,7 @@ const SheduleView = (props) =>{
                 </Form.Group>
                 </Col>
                 <Col sm={2} >
-                <Button size='sm' className=''variant="info" disabled={getDisabled()} onClick={handlePrint}><i class="fa-solid fa-print"></i> Print Sheets </Button>
+                <Button size='sm' className=''variant="info" disabled={getDisabled()} onClick={handlePrint}><i className="fa-solid fa-print"></i> Print Sheets </Button>
                 </Col>
                 </Row>
             </Container>
@@ -116,7 +118,7 @@ const SheduleView = (props) =>{
                     <h6 className='page_break p_title' key={count+'_title'}>{section} cleaning Page {count+1} of {splitLocations.length}</h6>
             <table cellPadding="0" cellSpacing="0"  key={count+'_table'} >
                 <thead key={count+'_head'}>
-                    <tr className='p_heading' height='30px' key={count+'_trow'}>
+                    <tr className='p_heading'  key={count+'_trow'}>
                     <th key={count+'_layout'}>Layout</th>
                     <th key={count+'_bay'}>Bay</th>
                     {tableWeeks.map((week,count2) =>( <td key={count+'_date_'+count2}className='p_center p_date'>{week.toLocaleDateString()}</td>))}

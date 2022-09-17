@@ -2,15 +2,15 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { LayoutContext } from '../../contexts/layout-context/layout-context';
-import { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Form from 'react-bootstrap/Form';
 import LayoutCard from '../layout-card/layout-card';
 
 
-const LayoutView = (props) => {
+const LayoutView = () => {
     const {layouts,setGroup,group} = useContext(LayoutContext);
 
-    const handleSectionChange = (event) => {
+    const handleSectionChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
         
         setGroup(event.target.value);
       }

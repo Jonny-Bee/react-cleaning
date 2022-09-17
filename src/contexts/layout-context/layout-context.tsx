@@ -15,14 +15,17 @@ interface ILayoutContextProps{
     layouts:layout[],
     setLayouts:(a:layout[]) => void,
     group:string,
-    setGroup:(a:string) => void
+    setGroup:(a:string) => void,
+    cUpdateLayout:(data:layout) => void
     
 }
 export const LayoutContext = createContext<ILayoutContextProps>({
     layouts:[],
     setLayouts:()=>{},
     group:'',
-    setGroup:()=>{}
+    setGroup:()=>{},
+    cUpdateLayout:() => {}
+        
 });
 
 interface ILayoutProviderProps{

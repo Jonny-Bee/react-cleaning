@@ -5,11 +5,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import './nav-bar.styles.css';
 import { UserContext } from '../../contexts/user-context/user-context';
 import { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom'
-import { Stack } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom'
 
 
-const TopNav = (props) =>{
+
+const TopNav = () =>{
 
     
   const {user} = useContext(UserContext);

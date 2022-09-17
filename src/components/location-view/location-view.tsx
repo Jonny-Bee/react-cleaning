@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import { LocationContext } from "../../contexts/location-context/location-context";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import LocationCard from "../location-card/location-card";
 import Button from "react-bootstrap/esm/Button";
@@ -8,37 +8,38 @@ import { iFramePrinter } from "../../utils/print-helper";
 import Modal from "react-bootstrap/Modal";
 import { LayoutContext } from "../../contexts/layout-context/layout-context";
 import { Row, Col } from "react-bootstrap";
-const LocationView = (props) => {
+
+const LocationView = () => {
   const { locations, setSection, addLocation, section } =
     useContext(LocationContext);
   const { layouts, setGroup } = useContext(LayoutContext);
 
-  const handleSectionChange = (event) => {
+  const handleSectionChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
     if (!event.target.value) return;
     setSection(event.target.value);
     setGroup(event.target.value);
   };
 
-  const handlePrint = (e) => {
+  const handlePrint = () => {
     iFramePrinter("printable");
   };
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const handleSave = () => {
-    let selectedLayout = document.getElementById("layoutSelect").value;
-    let selectedDate = document.getElementById("dateSelect").value;
+    const layoutSelector = document.getElementById("layoutSelect") as HTMLSelectElement | null;
+    const dateSelector = document.getElementById("dateSelect") as HTMLSelectElement | null;
+    let selectedLayout = layoutSelector!.value || '';
+    let selectedDate = dateSelector!.value || '';
     let formattedDate = new Date(selectedDate)
       .toISOString()
       .slice(0, 19)
       .replace("T", " ");
-   // console.log({ layout_id: selectedLayout, date: formattedDate });
-    addLocation({ layout_id: selectedLayout, date: formattedDate });
-  };
-  const isSelected = (value) => {
-    if (value === section) return true;
-    return false;
+   
+    addLocation( parseInt(selectedLayout),formattedDate );
   };
 
   return (
@@ -80,7 +81,7 @@ const LocationView = (props) => {
       <Container fluid className="mb-5" id="printable">
         <table cellPadding="0" cellSpacing="0" className="p_row_interactive">
           <thead>
-            <tr className="p_heading" height="30px">
+            <tr className="p_heading">
               <th>Layout</th>
               <th>Bay</th>
               <th>Last Cleaned</th>

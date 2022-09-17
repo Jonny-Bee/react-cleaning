@@ -5,43 +5,52 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { updateLayout } from "../../IO/DataIO";
-import { LayoutContext } from "../../contexts/layout-context/layout-context";
+import { layout, LayoutContext } from "../../contexts/layout-context/layout-context";
 import { UserContext } from "../../contexts/user-context/user-context";
 import Form from "react-bootstrap/Form";
-const LayoutCard = (props) => {
-  const bgClass = props.count % 2 === 0 ? "grey" : "";
+
+interface ILayoutCardProps{
+  layout:layout,
+  count:number,
+}
+
+const LayoutCard = ({layout, count}:ILayoutCardProps) => {
+  const bgClass = count % 2 === 0 ? "grey" : "";
   const [show, setShow] = useState(false);
   const { cUpdateLayout } = useContext(LayoutContext);
-  const tLayout = { ...props.layout };
+  const tLayout = { ...layout };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const weeks = [4, 6, 8, 16, 26, 52];
   const { user } = useContext(UserContext);
-  const handleChange = (event) => {
-    tLayout.frequency = event.target.value;
+
+  const handleChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
+    tLayout.frequency = parseInt(event.target.value);
   };
-  const handleSave = (event) => {
+
+  const handleSave = () => {
     updateLayout({
-      id: tLayout.id,
+      id: tLayout.id.toString(),
       field: "frequency",
-      value: tLayout.frequency,
+      value: tLayout.frequency.toString(),
       ...user,
     });
     cUpdateLayout(tLayout);
   };
+
   return (
     <>
       <Card className="highlight" onClick={handleShow}>
         <Card.Body className={bgClass}>
           <Row  xs={3}>
             <Col xs={2}>
-              {props.layout.id}{" "}
+              {layout.id}{" "}
             </Col>
             <Col xs={7}>
-              {props.layout.group_name.toUpperCase()}
+              {layout.group_name.toUpperCase()}
             </Col>
             <Col xs={3} className="rightAlign">
-              {props.layout.frequency} Weeks
+              {layout.frequency} Weeks
             </Col>
           </Row>
         </Card.Body>

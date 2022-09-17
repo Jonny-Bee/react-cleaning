@@ -8,16 +8,27 @@ import { LocationContext } from "../../contexts/location-context/location-contex
 import LoginScreen from "../login-component/login-component";
 import { useEffect , useState} from "react";
 import StackedChart from "../stacked-chart/stacked-chart";
+import type {location} from '../../contexts/location-context/location-context';
+
+type cleaningLocation = {
+  location:location,
+  isOverDue:boolean
+}
+
 const Home = () => {
+
   const { user } = useContext(UserContext);
-  const [cleaningList, setCleaningList] = useState([]);
+  const [cleaningList, setCleaningList] = useState<cleaningLocation[]>([]);
   const { store } = useContext(LocationContext);
+
   useEffect(() => {
-    let _cleaningList = [];
+    let _cleaningList:cleaningLocation[] = [];
     let thisWeek = new Date();
 
     thisWeek.setDate(thisWeek.getDate() - thisWeek.getDay());
-    for (var i = 0; i < store.length; i++) {
+
+    for (var i = 0; i < store.length; i++) 
+    {
       let nextDate = new Date(store[i].last_clean);
       nextDate.setDate(nextDate.getDate() + store[i].frequency * 7);
       nextDate.setDate(nextDate.getDate() - nextDate.getDay());
@@ -29,11 +40,12 @@ const Home = () => {
         //  console.log(nextDate.toLocaleDateString() +' -- '+ thisWeek.toLocaleDateString());
       }
     }
+
     setCleaningList(_cleaningList);
   }, [store]);
-  if (user.hash !== '') {
-    // console.log(_cleaningList + ' ' + selectedWeek.toLocaleDateString())
 
+  if (user.hash !== '') { // user is logged in
+   
     return (
       <Container className="pb-5">
         <Row>

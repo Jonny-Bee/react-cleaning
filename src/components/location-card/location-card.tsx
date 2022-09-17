@@ -1,43 +1,47 @@
-import { Card } from "react-bootstrap";
 import { useContext, useState } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { updateLocation } from "../../IO/DataIO";
-import { LocationContext } from "../../contexts/location-context/location-context";
+import { location, LocationContext } from "../../contexts/location-context/location-context";
 import { UserContext } from "../../contexts/user-context/user-context";
 import Form from "react-bootstrap/Form";
 
-const LocationCard = (props) => {
-  const bgClass = props.count % 2 === 1 ? "p_odd_row" : "";
+
+interface ILocationCardProps{
+  count:number,
+  location:location
+}
+
+const LocationCard = ({count, location}: ILocationCardProps) => {
+  const bgClass = count % 2 === 1 ? "p_odd_row" : "";
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { cUpdateLocation } = useContext(LocationContext);
   const { user } = useContext(UserContext);
-  const tLocation = { ...props.location };
+  const tLocation = { ...location };
   let overdue = false;
 
-  const myDate = new Date(props.location.last_clean);
-  let nextDate = new Date(props.location.last_clean);
+  const myDate = new Date(location.last_clean);
+  let nextDate = new Date(location.last_clean);
   let today = new Date();
   today.setDate(today.getDate() - today.getDay());
-  nextDate.setDate(nextDate.getDate() + props.location.frequency * 7);
+  nextDate.setDate(nextDate.getDate() + location.frequency * 7);
   //nextDate.setDate(nextDate.getDate() - nextDate.getDay());
   if (nextDate < today) {
     overdue = true;
   }
   const getHighlight = overdue ? "p_warn" : "";
   const overText = overdue ? " - OVERDUE" : "";
-  const handleChangeDate = (event) => {
+
+  const handleChangeDate = (event:React.ChangeEvent<HTMLInputElement>) => {
     tLocation.last_clean = new Date(event.target.value)
       .toISOString()
       .slice(0, 19)
       .replace("T", " ");
     cUpdateLocation(tLocation);
     updateLocation({
-      bay_id: tLocation.bay_id,
+      bay_id: tLocation.bay_id.toString(),
       field: "last_clean",
       value: tLocation.last_clean,
       ...user,
@@ -48,9 +52,9 @@ const LocationCard = (props) => {
     <>
       <tr className={bgClass} onClick={handleShow}>
         <td className="p_cell p_bold">
-          {props.location.group_name.toUpperCase()}
+          {location.group_name.toUpperCase()}
         </td>
-        <td className="p_cell">{props.location.bay}</td>
+        <td className="p_cell">{location.bay}</td>
         <td className="p_cell">{myDate.toLocaleDateString()}</td>
         <td className={"p_cell " + getHighlight}>
           {nextDate.toLocaleDateString() + overText}
@@ -66,7 +70,7 @@ const LocationCard = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            {props.location.group_name} - Last Cleaned Date
+            {location.group_name} - Last Cleaned Date
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

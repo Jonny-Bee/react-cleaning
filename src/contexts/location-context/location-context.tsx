@@ -23,7 +23,9 @@ interface ILocationContextProps{
   section:string,
   setSection:(a:string) => void,
   store:location[],
-  setStore:(a:location[]) => void
+  setStore:(a:location[]) => void,
+  cUpdateLocation :(data:location) => void,
+  addLocation:(layoutid:number,date:string) => void
 
 }
 
@@ -34,6 +36,8 @@ export const LocationContext = createContext<ILocationContextProps>({
   setSection: () => {},
   store: [],
   setStore: () => {},
+  cUpdateLocation:() => {},
+  addLocation:() => {}
 });
 
 interface ILocationProviderProps{
@@ -84,14 +88,14 @@ export const LocationContextProvider : FC<ILocationProviderProps> = ({ children 
     getLocations({ section: section, ...user }, f);
   };
 
-  const addLocation = (data:location) => {
-    let req = { layout: data.layout_id.toString(), ...user,bay:'-1',date:'' };
+  const addLocation = (layout_id:number,date:string) => {
+    let req = { layout: layout_id.toString(), ...user,bay:'-1',date:'' };
     let c = 1;
     for (let i = 0; i < locations.length; i++) {
-      c += locations[i].layout_id === data.layout_id ? 1 : 0;
+      c += locations[i].layout_id === layout_id ? 1 : 0;
     }
     req.bay = c.toString();
-    req.date = data.last_clean;
+    req.date = date;
     insertLocation(req, reloadLocations);
   };
 
