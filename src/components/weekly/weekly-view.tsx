@@ -44,7 +44,7 @@ const WeeklyView = () => {
         }
         setCleaningList(_cleaningList);
         console.log(_cleaningList.length + ' ' + selectedWeek.toLocaleDateString())
-    },[selectedWeek]);
+    },[selectedWeek,store]);
 
     const handlePrint = ()=>{
         iFramePrinter('printable',true);

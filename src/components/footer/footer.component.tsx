@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 import './footer.styles.css'
 const MainFooter = () =>{
     return(
