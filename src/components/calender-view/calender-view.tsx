@@ -8,7 +8,7 @@ import { CalenderContext } from "../../contexts/calender-context/calender-contex
 import { useContext } from "react";
 
 
-const CalenderView = (props) => {
+const CalenderView = () => {
 
     const {weeks} = useContext(CalenderContext);
    

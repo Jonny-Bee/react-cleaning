@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
-import { LocationContext } from '../../contexts/location-context/location-context';
+import { location, LocationContext } from '../../contexts/location-context/location-context';
 import { CalenderContext } from '../../contexts/calender-context/calender-context';
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
 import { iFramePrinter } from '../../utils/print-helper';
@@ -9,21 +9,24 @@ import WeeklyRow from './weekly-row';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const WeeklyView = (props) => {
+type CleaningItem = {
+    location:location,
+    isOverDue:boolean
+}
+const WeeklyView = () => {
 
     const {store} = useContext(LocationContext);
     const {weeks} = useContext(CalenderContext);
     const [selectedWeek,selectWeek] = useState(new Date(weeks[0].start_date))
-    const [cleaningList, setCleaningList] = useState([]);
-    const [showOverDue, setOverDue] = useState(true);
+    const [cleaningList, setCleaningList] = useState<CleaningItem[]>([]);
+   
     
     
     useEffect(() =>  {
-        let _cleaningList = [];
+        let _cleaningList:CleaningItem[] = [];
         let thisWeek = selectedWeek;
         for(var i = 0; i < store.length; i ++)
         {
-            let lastDate = new Date(store[i].last_clean);
             let nextDate = new Date( store[i].last_clean);
             nextDate.setDate(nextDate.getDate() + store[i].frequency * 7);
             nextDate.setDate(nextDate.getDate()  - nextDate.getDay());
@@ -43,13 +46,13 @@ const WeeklyView = (props) => {
         console.log(_cleaningList.length + ' ' + selectedWeek.toLocaleDateString())
     },[selectedWeek]);
 
-    const handlePrint = (e)=>{
+    const handlePrint = ()=>{
         iFramePrinter('printable',true);
     }
 
-    const handleDateChange = (event) => {
+    const handleDateChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
         if(event.target.value === '') return;
-        let sDate = '';
+        let sDate = new Date();
         
         for(var i =0;i<weeks.length;i++)
         {
@@ -59,11 +62,7 @@ const WeeklyView = (props) => {
         selectWeek(sDate);
     }
 
-   
 
-    const handleOverDueChange = (event) =>{
-
-    }
     const getHeading = () =>{
         if(selectedWeek)
             return selectedWeek.toLocaleDateString()
@@ -102,12 +101,12 @@ const WeeklyView = (props) => {
         <h4 className='p_title'>Cleaning Week - {getHeading()}</h4>
             <table cellPadding="0" cellSpacing="0" className='p_row_interactive'>
                 <thead>
-                <tr className='p_heading' height='30px'>
-                    <th width='35%'>Layout</th>
-                    <th width='8%'>Bay</th>
-                    <th width='12%'>Last Cleaned</th>
-                    <th width = '10%'>Date</th>
-                    <th width = '35%'>Sign</th>
+                <tr className='p_heading'>
+                    <th style = {{width:'35%'}}>Layout</th>
+                    <th style = {{width:'8%'}}>Bay</th>
+                    <th style = {{width:'12%'}}>Last Cleaned</th>
+                    <th style = {{width:'10%'}}>Date</th>
+                    <th style = {{width:'35%'}}>Sign</th>
                 </tr>
                 </thead>
                 <tbody>

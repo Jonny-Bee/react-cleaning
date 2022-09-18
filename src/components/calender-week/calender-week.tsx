@@ -1,36 +1,41 @@
-import { useContext } from "react";
-import { CalenderContext } from "../../contexts/calender-context/calender-context";
+import React, { useContext } from "react";
+import { CalenderContext, week } from "../../contexts/calender-context/calender-context";
 import { updateWeek } from "../../IO/DataIO";
 import { Card } from "react-bootstrap";
 import "./calender-week.css";
 import Form from "react-bootstrap/Form";
 import { UserContext } from "../../contexts/user-context/user-context";
 
-const CalenderWeek = (props) => {
-  const dataCopy = { ...props.data };
+interface ICalenderWeekProps{
+  data:week
+}
+const CalenderWeek = ({data}:ICalenderWeekProps) => {
+  const dataCopy = { ...data };
   const { cUpdateWeek } = useContext(CalenderContext);
   const { user } = useContext(UserContext);
   const bgclass =
-    props.data.is_promo || props.data.is_seasonal ? " fullweek" : " normalweek";
-  let myDate = new Date(props.data.start_date);
-  let promoCheck = dataCopy.is_promo === 1 ? true : false;
-  let seasonCheck = dataCopy.is_seasonal === 1 ? true : false;
-  const handlePromoChange = (event) => {
-    dataCopy.is_promo = event.target.checked ? 1 : 0;
+    data.is_promo || data.is_seasonal ? " fullweek" : " normalweek";
+  let myDate = new Date(data.start_date);
+  let promoCheck = dataCopy.is_promo ;
+  let seasonCheck = dataCopy.is_seasonal;
+
+  const handlePromoChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    dataCopy.is_promo = event.target.checked ;
     cUpdateWeek(dataCopy);
     updateWeek(
-      { id: dataCopy.id, field: "is_promo", value: dataCopy.is_promo, ...user },
+      { id: dataCopy.id.toString(), field: "is_promo", value: dataCopy.is_promo.toString(), ...user },
       (e) => {} // add error handling
     );
   };
-  const handleSeasonalChange = (event) => {
-    dataCopy.is_seasonal = event.target.checked ? 1 : 0;
+
+  const handleSeasonalChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    dataCopy.is_seasonal = event.target.checked;
     cUpdateWeek(dataCopy);
     updateWeek(
       {
-        id: dataCopy.id,
+        id: dataCopy.id.toString(),
         field: "is_seasonal",
-        value: dataCopy.is_seasonal,
+        value: dataCopy.is_seasonal.toString(),
         ...user,
       },
       (e) => {} // add error handling
